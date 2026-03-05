@@ -1,0 +1,7 @@
+pip install fastapi uvicorn jinja2 python-multipart, pytesseract,  Flask, render_template, pdfplumber
+
+python -m pip install fastapi uvicorn jinja2 python-multipart
+
+pip install Flask, render_template
+
+uvicorn main:app --reload

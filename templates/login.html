@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Login</title>
+<link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <link href="{{ url_for('static', path='styles/bootstrap.min.css') }}" rel="stylesheet">
+    
+<link rel="stylesheet" href="{{ url_for('static', path='styles/_custom.css') }}">
+</head>  
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4" style="width: 400px;">
+        
+        <h3 class="text-center mb-4">Hospital System Login</h3>
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <form method="post" action="/login">
+            
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<div class="rightV">Designed by Venkat  </div>
+</body>
+</html>
+

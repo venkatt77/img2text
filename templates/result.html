@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extracted Text</title>
+   <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <link href="{{ url_for('static', path='styles/bootstrap.min.css') }}" rel="stylesheet">
+    
+<link rel="stylesheet" href="{{ url_for('static', path='styles/_custom.css') }}">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+<h2>Extracted Text</h2>
+
+<textarea rows="10" cols="80">
+{{ extracted_text or "Nothing extracted from the uploaded file." }} username: {{ request.session.get("username", "Unknown User") }}
+</textarea>
+
+<br><br>
+<div style="width: 200px; margin-top: 20px;">
+<button class="btn btn-info" onclick="window.location.href='/upload'">Upload Another File</button>
+</div>
+</div>
+</div>
+</body>
+</html>

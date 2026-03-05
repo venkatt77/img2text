@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Prescription</title>
+      <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <link href="{{ url_for('static', path='styles/bootstrap.min.css') }}" rel="stylesheet">
+    
+<link rel="stylesheet" href="{{ url_for('static', path='styles/_custom.css?dfd') }}">
+    
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+    <h2>Upload Medical Prescription</h2>
+
+    <p>You can upload an image (PNG, JPG) or a PDF of your medical prescription. The system will extract the text for you.</p>
+<form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+    
+    <div class="drop-zone" id="dropZone">
+        Drag & Drop File Here<br>
+        OR<br>
+        <input type="file" name="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf" required>
+    </div>
+
+    <br>
+    <button type="submit" class="btn btn-primary w-200">Upload</button>
+</form>
+
+<br><br>
+<div class="voice-prescription">[ OR ]</div>
+<h3>Voice Prescription Input</h3>
+<input type="button" class="btn btn-success" value="Start Recording" onclick="startVoice()">
+<div id="voiceOutput"></div>
+
+</div>
+
+</div>
+
+<script>
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+
+dropZone.addEventListener("dragover", e => {
+    e.preventDefault();
+    dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop", e => {
+    e.preventDefault();
+    dropZone.classList.remove("dragover");
+    fileInput.files = e.dataTransfer.files;
+});
+
+// Voice Recognition (Web Speech API)
+function startVoice() {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = "en-US";
+    recognition.start();
+
+    recognition.onresult = function(event) {
+        document.getElementById("voiceOutput").innerText =
+            event.results[0][0].transcript;
+    };
+}
+</script>
+
+</body>
+</html>
